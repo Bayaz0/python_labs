@@ -1,5 +1,11 @@
 #является ли матрицей
-def is_matrix(mat: list[list[float | int]]) -> bool:
+def is_matrix(mat: list[list[object] | tuple[object, ...]]) -> bool:
+    """проверяет, является ли список двумерных списков прямоугольной матрицей"""
+    #пустая матрица
+    if not mat:
+        return True
+    if not mat[0]:
+        return False
     n = len(mat[0])
     for row in mat:
         if len(row) != n:

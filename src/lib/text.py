@@ -2,6 +2,7 @@ from re import findall
 
 #нормализация
 def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
+    """Берет строку - приводит к нижнему регистру - возвращает строку"""
     copy_text = text
     if casefold == True:
         copy_text = copy_text.casefold()
@@ -11,11 +12,13 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 
 #из строки в список слов по шаблону
 def tokenize(text: str) -> list[str]:
+    """Берет строку - возвращает список слов"""
     template = r"\w+(?:-\w+)*"
     return findall(template, text)
 
 #счетчик слов
 def count_freq(tokens: list[str]) -> dict[str, int]:
+    """Берет список слов - возвращает словарь-счетчик слов"""
     freq = dict()
     for token in tokens:
         freq[token] = freq.get(token, 0) + 1
@@ -23,8 +26,9 @@ def count_freq(tokens: list[str]) -> dict[str, int]:
 
 #сортировка счеткика слов
 def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+    """Берем словарь - возвращает отсортированный список"""
     sorted_freq = sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
-    return sorted_freq[0:n]
+    return sorted_freq[:n]
 
 if __name__ == "__main__":
 
@@ -46,7 +50,7 @@ if __name__ == "__main__":
         print(top_n(count_freq(["a","b","a","c","b","a"]), n=2))
         print("\n")
         print(count_freq(["bb","aa","bb","aa","cc"]))
-        print(top_n(count_freq(["bb","aa","bb","aa","cc"]), n=2))
+        print(top_n(count_freq(["bb","aa","bb","aa","cc"]), n=10))
 
     
     test_normalize()
