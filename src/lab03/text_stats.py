@@ -1,4 +1,5 @@
-from ..lib.text import *
+from src.lib.text import *
+
 
 row = input("Введите строку: ")
 row = normalize(row)

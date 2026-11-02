@@ -28,6 +28,7 @@ def count_freq(tokens: list[str]) -> dict[str, int]:
 def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
     """Берем словарь - возвращает отсортированный список"""
     sorted_freq = sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
+    #без ошибок, если n больше размера списка
     return sorted_freq[:n]
 
 if __name__ == "__main__":
